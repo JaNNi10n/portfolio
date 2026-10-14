@@ -31,10 +31,10 @@ export default async function OpenGraphImage() {
             <div style={{ marginTop: 28, fontSize: 30, color: C.ink2 }}>{person.role}</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", borderTop: `2px solid ${C.line}`, paddingTop: 24 }}>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
-              <span style={{ fontSize: 56, color: C.ink, letterSpacing: "-0.03em" }}>{map50.value}</span>
-              <span style={{ fontSize: 22, color: C.ink }}>{map50.label}</span>
+            <div style={{ display: "flex", fontSize: 56, color: C.ink, letterSpacing: "-0.03em", lineHeight: 1 }}>
+              {map50.value}
             </div>
+            <div style={{ display: "flex", marginTop: 10, fontSize: 22, color: C.ink }}>{map50.label}</div>
             <div style={{ marginTop: 10, fontSize: 20, color: C.accent }}>{map50.source}</div>
           </div>
         </div>
