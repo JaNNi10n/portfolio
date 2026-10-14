@@ -109,9 +109,12 @@ for (const f of await walk(path.join(root, "public"), [".txt", ".svg", ".json", 
 
 // ---------- Rendered output ----------
 if (rendered) {
-  const dir = path.join(root, ".next", "server", "app");
-  const htmlFiles = await walk(dir, [".html", ".rsc", ".body"]);
-  if (!htmlFiles.length) err("no rendered HTML found in .next/server/app");
+  // Plain `next build` leaves prerendered pages in .next/server/app. On Vercel the build adapter
+  // (onBuildComplete) moves them into .vercel/output before postbuild runs, so look there next.
+  const exts = [".html", ".rsc", ".body"];
+  let htmlFiles = await walk(path.join(root, ".next", "server", "app"), exts);
+  if (!htmlFiles.some((f) => f.endsWith(".html"))) htmlFiles = await walk(path.join(root, ".vercel", "output"), exts);
+  if (!htmlFiles.length) err("no rendered HTML found in .next/server/app or .vercel/output");
   for (const f of htmlFiles) {
     if ((await stat(f)).size > 5_000_000) continue;
     const text = await read(f);
@@ -124,7 +127,8 @@ if (rendered) {
     if (text.includes("credit-shap-waterfall-synthetic")) err(`${where}: renders the synthetic SHAP waterfall`);
     if (/addEventListener\(\s*["']scroll["']/.test(text)) err(`${where}: scroll event listener`);
   }
-  const index = htmlFiles.find((f) => rel(f).endsWith("app/index.html"));
+  const index = htmlFiles.find((f) => /(app|static)\/index\.html$|functions\/index\.prerender-fallback\.html$/.test(rel(f)));
+  if (!index) err("no rendered index.html found");
   if (index) {
     const html = await read(index);
     const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
