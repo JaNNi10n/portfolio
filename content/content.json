@@ -917,7 +917,7 @@
     "ocrReproduce": "python -m mmrag index data/synthetic/scans --out indexes/ocr"
   },
   "site": {
-    "repoUrl": "https://github.com/JaNNi10n/shivansh-portfolio",
+    "repoUrl": "https://github.com/JaNNi10n/portfolio",
     "repoLabel": "Site source on GitHub"
   }
 }
