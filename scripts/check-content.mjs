@@ -110,11 +110,15 @@ for (const f of await walk(path.join(root, "public"), [".txt", ".svg", ".json", 
 // ---------- Rendered output ----------
 if (rendered) {
   // Plain `next build` leaves prerendered pages in .next/server/app. On Vercel the build adapter
-  // (onBuildComplete) moves them into .vercel/output before postbuild runs, so look there next.
+  // (onBuildComplete) writes them to .next/output (or .vercel/output) before postbuild runs, so look there next.
   const exts = [".html", ".rsc", ".body"];
-  let htmlFiles = await walk(path.join(root, ".next", "server", "app"), exts);
-  if (!htmlFiles.some((f) => f.endsWith(".html"))) htmlFiles = await walk(path.join(root, ".vercel", "output"), exts);
-  if (!htmlFiles.length) err("no rendered HTML found in .next/server/app or .vercel/output");
+  const outDirs = [[".next", "server", "app"], [".next", "output"], [".vercel", "output"]];
+  let htmlFiles = [];
+  for (const d of outDirs) {
+    htmlFiles = await walk(path.join(root, ...d), exts);
+    if (htmlFiles.some((f) => f.endsWith(".html"))) break;
+  }
+  if (!htmlFiles.length) err(`no rendered HTML found in ${outDirs.map((d) => d.join("/")).join(", ")}`);
   for (const f of htmlFiles) {
     if ((await stat(f)).size > 5_000_000) continue;
     const text = await read(f);
