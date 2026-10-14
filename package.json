@@ -1,0 +1,31 @@
+{
+  "name": "shivansh-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "node scripts/check-content.mjs",
+    "build": "next build",
+    "postbuild": "node scripts/check-content.mjs --rendered",
+    "start": "next start",
+    "check:content": "node scripts/check-content.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "derive-assets": "node scripts/derive-assets.mjs"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "2.1.10",
+    "next": "16.4.1",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "postcss": "^8",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5"
+  }
+}

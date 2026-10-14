@@ -1,0 +1,891 @@
+{
+  "_meta": {
+    "compiled": "2026-10-14",
+    "sources": [
+      "E:/Jassi/profile.json (single source of truth for person, education, experience, skills, achievements)",
+      "E:/Jassi/portfolio/<repo>/README.md, github_meta.json, results/, docs/ (project facts and metrics)"
+    ],
+    "rules": [
+      "Every metric carries a source (repo-relative path) and sourceUrl (public GitHub file at main). Do not show a number that is not in this file.",
+      "Zero em-dashes or en-dashes in any string. Ranges use a plain hyphen.",
+      "Public contact details are limited to email, LinkedIn, GitHub and the redacted resume. No other personal details are in this file.",
+      "credit-risk-duckdb-lightgbm has NOT been run on real data: show it as in progress, never show model-quality numbers for it.",
+      "Images in public/assets are real outputs from the repos. Captions say what each one is; credit-risk images are from generated (synthetic) data and must be captioned as such."
+    ],
+    "githubRaw": "https://github.com/JaNNi10n/{repo}/blob/main/{path}",
+    "edits": [
+      {
+        "field": "hero.subtext",
+        "from": "Entry-level AI/ML engineer in Bangalore. Every number on this page links to the file that produced it.",
+        "to": "Entry-level AI/ML engineer in Bangalore. Every result on this page links to the file that produced it.",
+        "why": "\"Result\" replaces \"number\" so the promise is literally true: dates, CGPA and the OCR excerpt do not link to result files (final_spec 7.1)."
+      },
+      {
+        "field": "hero.heroImage",
+        "from": "/assets/yolo-demo-annotated.webp",
+        "to": "/assets/yolo-test-predictions-2row.webp",
+        "why": "Derived 2-row crop of the 1600px test grid; drops the empty bottom-right cell (final_spec 7.1, 7.3)."
+      },
+      {
+        "field": "projects[multimodal-rag].approach[2]",
+        "from": "Retrieve the best page, then have Qwen2.5-VL-3B in NF4 4-bit read the answer from the page image on a 4 GB laptop GPU.",
+        "to": "Qwen2.5-VL-3B (4-bit) reads the answer from the page image and the page's OCR text.",
+        "why": "The default run passes image plus OCR text (MULTIMODAL_RAG_project1 README line 21)."
+      },
+      {
+        "field": "signature",
+        "from": null,
+        "to": "added",
+        "why": "Walkthrough of qa.jsonl line 1 through OCR, BM25 and the reader; strings verified 2026-10-14 (final_spec 7.2)."
+      },
+      {
+        "field": "site",
+        "from": null,
+        "to": "added",
+        "why": "Portfolio source repo URL for the footer."
+      },
+      {
+        "field": "assets[credit-shap-waterfall-synthetic.webp]",
+        "from": "public/assets/",
+        "to": "not published",
+        "why": "The synthetic SHAP waterfall prints contribution values a skimmer could read as results; it is never shown, so it is not served either (final_spec 9.6, 12)."
+      }
+    ]
+  },
+  "person": {
+    "name": "Shivansh Bhardwaj",
+    "firstName": "Shivansh",
+    "lastName": "Bhardwaj",
+    "role": "AI/ML Engineer",
+    "roleLine": "Entry-level AI/ML engineer working on computer vision, RAG and LLM systems.",
+    "bio": "Computer Science graduate (VIT Bhopal) with an IIT Guwahati credential in Artificial Intelligence and Machine Learning (Computer Vision, NLP, Transformers, Reinforcement Learning, Spark, MLOps). Building computer vision, LLM/RAG and multimodal Generative AI projects with measured, reproducible results. Seeking an entry-level AI/ML Engineer role.",
+    "bioShort": "CS graduate from VIT Bhopal with an IIT Guwahati AI/ML programme. I build computer vision, RAG and LLM projects and report measured, reproducible results.",
+    "location": "Bangalore, India",
+    "availability": "Open to entry-level AI/ML Engineer roles",
+    "openToRoles": [
+      "AI/ML Engineer",
+      "Machine Learning Engineer",
+      "Computer Vision Engineer",
+      "GenAI / LLM Engineer"
+    ],
+    "workModes": [
+      "On-site",
+      "Hybrid",
+      "Remote"
+    ],
+    "_source": "profile.json: personal, summary, job_preferences"
+  },
+  "hero": {
+    "headline": "Computer vision and RAG systems, measured end to end.",
+    "subtext": "Entry-level AI/ML engineer in Bangalore. Every result on this page links to the file that produced it.",
+    "primaryCta": {
+      "label": "View projects",
+      "href": "#work"
+    },
+    "secondaryCta": {
+      "label": "Download resume",
+      "href": "/Shivansh_Bhardwaj_Resume.pdf"
+    },
+    "heroImage": {
+      "src": "/assets/yolo-test-predictions-2row.webp",
+      "alt": "Fine-tuned YOLO26n detections on six held-out test images: elephant, zebra, rhino and buffalo, each with a box and a confidence score",
+      "caption": "Test-split predictions from the object detection project.",
+      "width": 1600,
+      "height": 608
+    }
+  },
+  "links": {
+    "email": "shivanshjassi@gmail.com",
+    "emailHref": "mailto:shivanshjassi@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/shivansh-bhardwaj-b47552186/",
+    "linkedinLabel": "linkedin.com/in/shivansh-bhardwaj-b47552186",
+    "github": "https://github.com/JaNNi10n",
+    "githubLabel": "github.com/JaNNi10n",
+    "resume": "/Shivansh_Bhardwaj_Resume.pdf",
+    "resumeLabel": "Download resume (PDF)",
+    "_note": "The resume PDF is the 2026-10-14 resume with the phone number removed by true redaction (text deleted, not covered). Links inside it still work."
+  },
+  "education": [
+    {
+      "institution": "Indian Institute of Technology (IIT) Guwahati",
+      "location": "Guwahati, India",
+      "program": "Credit-Linked Certification Program in Artificial Intelligence & Machine Learning",
+      "cgpa": "6.34/10",
+      "status": "Coursework and final examinations completed; certificate issuance expected October 2026",
+      "dateLabel": "Certificate expected Oct 2026",
+      "coursework": [
+        "Computer Vision & Object Detection (YOLO)",
+        "NLP & Transformer Architectures",
+        "Reinforcement Learning",
+        "Distributed Computing (Spark)",
+        "MLOps Fundamentals"
+      ],
+      "_source": "profile.json: education[0]"
+    },
+    {
+      "institution": "Vellore Institute of Technology (VIT), Bhopal",
+      "location": "Bhopal, India",
+      "program": "B.Tech in Computer Science (Core)",
+      "cgpa": "7.07/10",
+      "dateLabel": "Sep 2021 - Sep 2025",
+      "graduationYear": 2025,
+      "_source": "profile.json: education[1]"
+    }
+  ],
+  "experience": [
+    {
+      "company": "BlueEra Softech",
+      "role": "Web Development Intern",
+      "dateLabel": "Jan 2025 - Mar 2025",
+      "durationLabel": "2 months",
+      "bullets": [
+        "Completed a 2-month web development internship working with HTML, CSS, JavaScript and Python."
+      ],
+      "_source": "profile.json: experience[0] (internship certificate). No metrics or project details are on record; do not add any."
+    }
+  ],
+  "skills": [
+    {
+      "group": "Languages",
+      "items": [
+        "Python",
+        "SQL",
+        "Java"
+      ]
+    },
+    {
+      "group": "Computer Vision",
+      "items": [
+        "PyTorch",
+        "OpenCV",
+        "YOLO (Ultralytics)",
+        "torchvision",
+        "Roboflow"
+      ]
+    },
+    {
+      "group": "NLP / GenAI",
+      "items": [
+        "Generative AI",
+        "LLMs & VLMs",
+        "RAG",
+        "Transformers",
+        "Hugging Face",
+        "LangChain",
+        "Embeddings & Vector Search (FAISS)",
+        "Hybrid Search & Re-ranking",
+        "Prompt Engineering"
+      ]
+    },
+    {
+      "group": "Machine Learning",
+      "items": [
+        "Deep Learning",
+        "Fine-tuning",
+        "Scikit-learn",
+        "XGBoost",
+        "NumPy",
+        "Pandas",
+        "Reinforcement Learning",
+        "Apache Spark (PySpark)"
+      ]
+    },
+    {
+      "group": "MLOps",
+      "items": [
+        "Docker",
+        "FastAPI",
+        "GitHub Actions",
+        "MLflow",
+        "AWS (S3, EC2)",
+        "pytest"
+      ]
+    },
+    {
+      "group": "Web",
+      "items": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ]
+    },
+    {
+      "group": "Core CS",
+      "items": [
+        "Data Structures & Algorithms",
+        "OOP",
+        "DBMS",
+        "Git"
+      ]
+    }
+  ],
+  "_skillsSource": "profile.json: skills (group order preserved)",
+  "achievements": [
+    {
+      "title": "Winner, Football",
+      "detail": "Aahvaan '23 Sports Tournament, VIT Bhopal University",
+      "dateLabel": "May - Aug 2023"
+    },
+    {
+      "title": "Silver, Inter-School Table Tennis Tournament",
+      "detail": "Represented at SGFI State Table Tennis",
+      "dateLabel": null
+    },
+    {
+      "title": "3rd place, 100m Freestyle Swimming",
+      "detail": "Khel Mahakumbh, Vadodara (Govt. of Gujarat)",
+      "dateLabel": "2015-16"
+    },
+    {
+      "title": "Participated, 64th District-Level School Football (U-19)",
+      "detail": "Sikar",
+      "dateLabel": "2019-20"
+    }
+  ],
+  "_achievementsSource": "profile.json: achievements. Khel Mahakumbh is Vadodara-level, not state-level: do not upgrade it.",
+  "sharedHardware": "All project numbers were measured on one Windows 10 laptop with an NVIDIA RTX 3050 Ti Laptop GPU (4 GB).",
+  "projects": [
+    {
+      "slug": "yolo26-detector",
+      "featured": true,
+      "order": 1,
+      "status": "released",
+      "title": "Real-Time Object Detection API",
+      "repo": "FastAPI-YOLO26-Detector",
+      "repoUrl": "https://github.com/JaNNi10n/FastAPI-YOLO26-Detector",
+      "release": "v1.0.0",
+      "dateLabel": "Sep 2026",
+      "tagline": "A tested FastAPI service for a YOLO26n detector fine-tuned on African Wildlife.",
+      "problem": "A trained detector in a notebook is hard for anything else to use. Other services need to send an image over HTTP and get structured results back, the API must not fall over on bad input, and someone needs to know how accurate the model really is.",
+      "approach": [
+        "Fine-tuned COCO-pretrained YOLO26n for 30 epochs at 640 px on the 1,052 training images of the public African Wildlife dataset (buffalo, elephant, rhino, zebra).",
+        "Reported accuracy on the 227-image test split, which was never used for training or for picking the best epoch.",
+        "Served it with FastAPI: GET /health, POST /predict (JSON boxes, classes, scores) and POST /predict/annotated (JPEG). The model loads once at startup with a warm-up inference.",
+        "Validated uploads (type, size, decodability) and returned 415 / 413 / 400 / 422 errors instead of HTTP 500.",
+        "Found and fixed an evaluation bug: an NMS time limit was silently dropping boxes on a busy GPU, so evaluate.py now disables it."
+      ],
+      "stack": [
+        "PyTorch",
+        "Ultralytics YOLO26",
+        "FastAPI",
+        "Pydantic",
+        "Docker",
+        "pytest",
+        "GitHub Actions"
+      ],
+      "metrics": [
+        {
+          "label": "mAP50, held-out test split",
+          "value": "0.975",
+          "context": "227 test images, 4 classes",
+          "source": "results/metrics_test.json",
+          "sourceUrl": "https://github.com/JaNNi10n/FastAPI-YOLO26-Detector/blob/main/results/metrics_test.json",
+          "headline": true
+        },
+        {
+          "label": "mAP50-95, held-out test split",
+          "value": "0.847",
+          "context": "227 test images",
+          "source": "results/metrics_test.json",
+          "sourceUrl": "https://github.com/JaNNi10n/FastAPI-YOLO26-Detector/blob/main/results/metrics_test.json",
+          "headline": true
+        },
+        {
+          "label": "Median server inference",
+          "value": "50 ms",
+          "context": "RTX 3050 Ti, 100 sequential requests (p50 49.81 ms)",
+          "source": "results/latency_gpu.json",
+          "sourceUrl": "https://github.com/JaNNi10n/FastAPI-YOLO26-Detector/blob/main/results/latency_gpu.json",
+          "headline": true
+        },
+        {
+          "label": "pytest tests passing",
+          "value": "16",
+          "context": "health, predictions, 4xx errors, 12 concurrent requests",
+          "source": "results/pytest.txt",
+          "sourceUrl": "https://github.com/JaNNi10n/FastAPI-YOLO26-Detector/blob/main/results/pytest.txt",
+          "headline": false
+        }
+      ],
+      "honestNotes": [
+        "The GPU was shared with other jobs during benchmarking, so p95 latency is noisy (GPU client p95 397 ms).",
+        "The Dockerfile (CPU-only PyTorch, non-root user) is written but was not built on the dev machine."
+      ],
+      "images": [
+        {
+          "src": "/assets/yolo-demo-annotated.webp",
+          "alt": "Elephant and zebras detected with boxes and confidence scores",
+          "caption": "Annotated prediction on a held-out test image.",
+          "width": 620,
+          "height": 387,
+          "role": "cover"
+        },
+        {
+          "src": "/assets/yolo-test-predictions.webp",
+          "alt": "Grid of eight test images with predicted boxes for elephant, zebra, rhino and buffalo",
+          "caption": "Predictions on a batch of test-split images.",
+          "width": 1600,
+          "height": 915,
+          "role": "gallery"
+        },
+        {
+          "src": "/assets/yolo-swagger.webp",
+          "alt": "Swagger UI listing GET /health, POST /predict and POST /predict/annotated",
+          "caption": "Auto-generated OpenAPI docs at /docs.",
+          "width": 1280,
+          "height": 1100,
+          "role": "gallery"
+        },
+        {
+          "src": "/assets/yolo-training-curves.webp",
+          "alt": "Ultralytics training curves: box, class and DFL losses with precision, recall and mAP per epoch",
+          "caption": "Training and validation curves over 30 epochs.",
+          "width": 1600,
+          "height": 800,
+          "role": "gallery"
+        },
+        {
+          "src": "/assets/yolo-confusion-matrix.webp",
+          "alt": "Normalized confusion matrix for buffalo, elephant, rhino, zebra and background",
+          "caption": "Normalized confusion matrix (validation).",
+          "width": 1400,
+          "height": 1050,
+          "role": "gallery"
+        }
+      ],
+      "_source": "profile.json projects[0]; README.md; results/"
+    },
+    {
+      "slug": "multimodal-rag",
+      "featured": true,
+      "order": 2,
+      "status": "released",
+      "title": "Multimodal Document RAG",
+      "repo": "MULTIMODAL_RAG_project1",
+      "repoUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1",
+      "release": "v1.0.0",
+      "dateLabel": "Sep 2026",
+      "tagline": "Question answering over scanned documents with OCR retrieval and a 4-bit Qwen2.5-VL reader.",
+      "problem": "Useful information sits in scanned invoices, bank statements and bills. Plain text RAG fails because there is no text layer, and after OCR the layout is easy to lose. A vision-language model reads a page image well but cannot look through hundreds of pages per question.",
+      "approach": [
+        "Ingest PDFs (text layer plus a page render) and scans (RapidOCR), then split pages into 60-word chunks with a 15-word overlap.",
+        "Index every chunk with BM25 and with MiniLM embeddings in FAISS, plus a reciprocal-rank-fusion hybrid.",
+        "Qwen2.5-VL-3B (4-bit) reads the answer from the page image and the page's OCR text.",
+        "Built a seeded, privacy-safe synthetic evaluation set (45 documents, 120 questions with known answers) and measured retrieval and end-to-end accuracy.",
+        "Traced every wrong answer to a retrieval miss caused by OCR merging words, not to the reader."
+      ],
+      "stack": [
+        "Qwen2.5-VL",
+        "Hugging Face Transformers",
+        "bitsandbytes",
+        "RapidOCR",
+        "PyMuPDF",
+        "BM25",
+        "FAISS",
+        "sentence-transformers",
+        "pytest"
+      ],
+      "metrics": [
+        {
+          "label": "End-to-end answer accuracy",
+          "value": "96.7%",
+          "context": "116 of 120 questions on degraded scans",
+          "source": "results/qa_ocr_bm25_full.json",
+          "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/results/qa_ocr_bm25_full.json",
+          "headline": true
+        },
+        {
+          "label": "BM25 page hit@1 on OCR'd scans",
+          "value": "0.967",
+          "context": "120 questions, 45 documents (dense: 0.108)",
+          "source": "results/retrieval_metrics.json",
+          "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/results/retrieval_metrics.json",
+          "headline": true
+        },
+        {
+          "label": "Reader accuracy when the right page was retrieved",
+          "value": "116 / 116",
+          "context": "every error was a retrieval miss",
+          "source": "results/qa_ocr_bm25_full.json",
+          "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/results/qa_ocr_bm25_full.json",
+          "headline": true
+        },
+        {
+          "label": "Peak VRAM",
+          "value": "2.99 GB",
+          "context": "fits a 4 GB laptop GPU; about 3.1 s per question",
+          "source": "results/qa_ocr_bm25_full.json",
+          "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/results/qa_ocr_bm25_full.json",
+          "headline": false
+        }
+      ],
+      "honestNotes": [
+        "The test set is small and templated: every question contains a unique identifier, which favours BM25. A public benchmark such as DocVQA is the next step.",
+        "The evaluation documents are synthetic and marked SAMPLE - SYNTHETIC DATA."
+      ],
+      "images": [
+        {
+          "src": "/assets/mmrag-retrieval-hit-at-k.webp",
+          "alt": "Bar charts of hit@1, hit@3 and hit@5 for dense, BM25 and hybrid retrieval on four index variants",
+          "caption": "Page retrieval on 120 synthetic questions: BM25 wins on ID-style questions.",
+          "width": 1500,
+          "height": 1020,
+          "role": "cover"
+        },
+        {
+          "src": "/assets/mmrag-sample-invoice.webp",
+          "alt": "Degraded synthetic tax invoice scan marked SAMPLE - SYNTHETIC DATA",
+          "caption": "A synthetic scan from the evaluation set. The reader answered its total, 26,318.72.",
+          "width": 1097,
+          "height": 1537,
+          "role": "gallery"
+        }
+      ],
+      "_source": "profile.json projects[1]; README.md; results/"
+    },
+    {
+      "slug": "rag-retrieval-eval-gate",
+      "featured": true,
+      "order": 3,
+      "status": "released",
+      "title": "RAG Retrieval Benchmark & CI Gate",
+      "repo": "rag-retrieval-eval-gate",
+      "repoUrl": "https://github.com/JaNNi10n/rag-retrieval-eval-gate",
+      "release": "v1.0.0",
+      "dateLabel": "Oct 2026",
+      "tagline": "BM25 vs dense vs hybrid vs re-ranking on BEIR SciFact, with a CI gate for retrieval regressions.",
+      "problem": "Most RAG demos pick a retriever and never measure it. Without a golden set you cannot tell whether hybrid search or a re-ranker helps, what it costs in latency, or whether a small code change silently made retrieval worse.",
+      "approach": [
+        "Ran four arms over the full 5,183-document SciFact corpus: BM25, dense (bge-small-en-v1.5 + FAISS), hybrid Reciprocal Rank Fusion and a cross-encoder re-ranker.",
+        "Scored all 300 test queries with nDCG@10, Recall@100 and MRR@10, and tested every arm against BM25 with a paired t-test and a Fisher randomisation test.",
+        "Tuned the RRF constant on the 809 train queries only, then froze it before touching test.",
+        "Served the arms through FastAPI GET /search and added a regression gate that exits non-zero when nDCG@10 drops more than 0.02 below the committed baseline.",
+        "Showed the gate failing on a deliberately broken branch (documents cut to 128 tokens) and documented a real regression it lets through (dropping titles)."
+      ],
+      "stack": [
+        "bm25s",
+        "Sentence-Transformers",
+        "FAISS",
+        "ranx",
+        "FastAPI",
+        "Docker",
+        "GitHub Actions",
+        "pytest"
+      ],
+      "metrics": [
+        {
+          "label": "Hybrid nDCG@10",
+          "value": "0.727",
+          "context": "vs 0.676 for BM25, 300 SciFact test queries",
+          "source": "results/results.json",
+          "sourceUrl": "https://github.com/JaNNi10n/rag-retrieval-eval-gate/blob/main/results/results.json",
+          "headline": true
+        },
+        {
+          "label": "Hybrid Recall@100",
+          "value": "0.965",
+          "context": "vs 0.913 for BM25",
+          "source": "results/results.json",
+          "sourceUrl": "https://github.com/JaNNi10n/rag-retrieval-eval-gate/blob/main/results/results.json",
+          "headline": true
+        },
+        {
+          "label": "Significance vs BM25",
+          "value": "p < 0.001",
+          "context": "paired t-test p = 1.7e-06; Fisher randomisation p < 1e-04",
+          "source": "results/results.json",
+          "sourceUrl": "https://github.com/JaNNi10n/rag-retrieval-eval-gate/blob/main/results/results.json",
+          "headline": true
+        },
+        {
+          "label": "Regression caught by the gate",
+          "value": "-0.032",
+          "context": "dense nDCG@10 drop on the 128-token truncation branch, tolerance 0.02",
+          "source": "results/gate_demo_truncate128/gate.log",
+          "sourceUrl": "https://github.com/JaNNi10n/rag-retrieval-eval-gate/blob/main/results/gate_demo_truncate128/gate.log",
+          "headline": false
+        },
+        {
+          "label": "Tests and coverage",
+          "value": "34 passed, 87.7%",
+          "context": "line coverage on ragbench/",
+          "source": "results/pytest.log",
+          "sourceUrl": "https://github.com/JaNNi10n/rag-retrieval-eval-gate/blob/main/results/pytest.log",
+          "headline": false
+        }
+      ],
+      "honestNotes": [
+        "The cross-encoder re-ranker scored 0.687 nDCG@10 and did not beat hybrid on SciFact.",
+        "Hybrid vs dense alone (+0.014 nDCG@10) is not statistically significant (p = 0.19).",
+        "Latency was measured on a shared laptop GPU and varied a lot between runs."
+      ],
+      "images": [
+        {
+          "src": "/assets/ragbench-results.webp",
+          "alt": "Bar charts of nDCG@10 and per-query latency for BM25, dense, hybrid and re-rank",
+          "caption": "Quality and latency per arm on SciFact test.",
+          "width": 1500,
+          "height": 510,
+          "role": "cover"
+        },
+        {
+          "src": "/assets/ragbench-gate-demo.webp",
+          "alt": "Terminal output of the regression gate passing on main and failing on the truncate-docs branch",
+          "caption": "The gate passing on main and failing on a broken branch, rendered from saved logs.",
+          "width": 1650,
+          "height": 873,
+          "role": "gallery"
+        }
+      ],
+      "_source": "profile.json projects[2]; README.md; results/"
+    },
+    {
+      "slug": "text2sql-agent",
+      "featured": false,
+      "order": 4,
+      "status": "released",
+      "title": "Self-Correcting Text-to-SQL Agent",
+      "repo": "text2sql-self-correcting-agent",
+      "repoUrl": "https://github.com/JaNNi10n/text2sql-self-correcting-agent",
+      "release": "v1.0.0",
+      "dateLabel": "Oct 2026",
+      "tagline": "A local 1.5B model writes SQL behind a read-only safety guard, retries on errors and is ablated on Spider.",
+      "problem": "Small local LLMs can write SQL, but their output cannot be run as-is: they invent column names, copy identifiers from examples and will write DELETE if asked. Advice like few-shot or self-correction has to be measured, not assumed.",
+      "approach": [
+        "qwen2.5-coder:1.5b through Ollama turns a question into one SELECT; a sqlglot guard and a read-only, time-limited executor run it.",
+        "On an error, empty result or guard rejection, the feedback goes back to the model for up to 2 retries.",
+        "Measured each component on a fixed, hardness-stratified 200-question Spider-dev slice with Wilson intervals and McNemar tests."
+      ],
+      "stack": [
+        "Ollama",
+        "Qwen2.5-Coder",
+        "sqlglot",
+        "SQLite",
+        "bge-small",
+        "FastAPI",
+        "scipy",
+        "pytest"
+      ],
+      "metrics": [
+        {
+          "label": "Best 1.5B execution accuracy",
+          "value": "63.5%",
+          "context": "linking + self-correction (A1R) vs 60.5% zero-shot; +3.0 points, not significant (p = 0.070)",
+          "source": "results/summary.json",
+          "sourceUrl": "https://github.com/JaNNi10n/text2sql-self-correcting-agent/blob/main/results/summary.json",
+          "headline": true
+        },
+        {
+          "label": "Execution accuracy with the 3B model",
+          "value": "68.5%",
+          "context": "full pipeline with qwen2.5-coder:3b",
+          "source": "results/summary.json",
+          "sourceUrl": "https://github.com/JaNNi10n/text2sql-self-correcting-agent/blob/main/results/summary.json",
+          "headline": false
+        },
+        {
+          "label": "Red-team prompts that executed a write",
+          "value": "0 of 20",
+          "context": "guard falsely rejected 0 of 9,693 gold Spider queries",
+          "source": "results/redteam_summary.json",
+          "sourceUrl": "https://github.com/JaNNi10n/text2sql-self-correcting-agent/blob/main/results/redteam_summary.json",
+          "headline": true
+        }
+      ],
+      "honestNotes": [
+        "Few-shot examples from other databases hurt accuracy by 5 points; on this hardware model size mattered more than any prompting component."
+      ],
+      "images": [
+        {
+          "src": "/assets/text2sql-ex-by-arm.webp",
+          "alt": "Execution accuracy per ablation arm with Wilson confidence intervals, and per Spider hardness level",
+          "caption": "Execution accuracy per arm on the 200-question Spider-dev slice.",
+          "width": 1430,
+          "height": 546,
+          "role": "cover"
+        }
+      ],
+      "_source": "README.md; results/summary.json; results/redteam_summary.json"
+    },
+    {
+      "slug": "hinglish-sentiment",
+      "featured": false,
+      "order": 5,
+      "status": "released",
+      "title": "Hinglish Sentiment Benchmark",
+      "repo": "hinglish-sentiment-benchmark",
+      "repoUrl": "https://github.com/JaNNi10n/hinglish-sentiment-benchmark",
+      "release": "v1.0.0",
+      "dateLabel": "Oct 2026",
+      "tagline": "TF-IDF vs fine-tuned MuRIL vs a prompted 1.5B LLM on code-mixed tweets, served as INT8 ONNX.",
+      "problem": "Indian social media text often switches between Hindi (in Latin script) and English with non-standard spellings, and single-language tools handle it badly.",
+      "approach": [
+        "Compared three arms on the official SemEval-2020 SentiMix test split (3,000 tweets): TF-IDF + logistic regression, MuRIL fine-tuned on a 4 GB GPU, and Qwen2.5-1.5B prompted 6-shot.",
+        "Exported the best MuRIL run to ONNX, quantized it to INT8 with outlier layers kept in FP32, and served it with FastAPI."
+      ],
+      "stack": [
+        "Hugging Face Transformers",
+        "MuRIL",
+        "scikit-learn",
+        "ONNX Runtime",
+        "Ollama",
+        "FastAPI",
+        "pytest"
+      ],
+      "metrics": [
+        {
+          "label": "MuRIL weighted-F1",
+          "value": "69.8 ± 0.5",
+          "context": "mean of 3 seeds on 3,000 test tweets (prompted LLM: 47.7 on a 600-tweet sample)",
+          "source": "results/summary.md",
+          "sourceUrl": "https://github.com/JaNNi10n/hinglish-sentiment-benchmark/blob/main/results/summary.md",
+          "headline": true
+        },
+        {
+          "label": "INT8 model size",
+          "value": "372 MB",
+          "context": "down from 906 MB, weighted-F1 70.4, 97.3% agreement with FP32",
+          "source": "results/bench.json",
+          "sourceUrl": "https://github.com/JaNNi10n/hinglish-sentiment-benchmark/blob/main/results/bench.json",
+          "headline": true
+        }
+      ],
+      "honestNotes": [
+        "The best SemEval-2020 Hinglish system scored 75.0, about 5 points above this model. Fine-tuning beat the TF-IDF baseline by only 0.9 points."
+      ],
+      "images": [
+        {
+          "src": "/assets/hinglish-confusion-matrices.webp",
+          "alt": "Four confusion matrices for TF-IDF, MuRIL FP32, MuRIL INT8 and Qwen2.5-1.5B",
+          "caption": "Confusion matrices per arm. Most errors sit on the neutral class.",
+          "width": 1848,
+          "height": 440,
+          "role": "cover"
+        },
+        {
+          "src": "/assets/hinglish-f1-by-cmi.webp",
+          "alt": "Weighted-F1 by code-mixing index tertile for each arm",
+          "caption": "Weighted-F1 by code-mixing index.",
+          "width": 880,
+          "height": 440,
+          "role": "gallery"
+        }
+      ],
+      "_source": "README.md; results/summary.md; results/bench.json"
+    },
+    {
+      "slug": "credit-risk",
+      "featured": false,
+      "order": 6,
+      "status": "in-progress",
+      "statusLabel": "In progress: not yet run on real data",
+      "title": "Credit Risk Scoring with DuckDB and LightGBM",
+      "repo": "credit-risk-duckdb-lightgbm",
+      "repoUrl": "https://github.com/JaNNi10n/credit-risk-duckdb-lightgbm",
+      "release": "v1.0.0",
+      "dateLabel": "Oct 2026",
+      "tagline": "A Home Credit default-risk pipeline: DuckDB SQL features, LightGBM, calibration, SHAP and a cost-based threshold.",
+      "problem": "Home Credit lends to people with little credit history. Predicting default needs the application plus history spread over 6 secondary tables with one-to-many keys.",
+      "approach": [
+        "One DuckDB SQL file per table aggregates history to one feature row per applicant, with leakage checks written as tests.",
+        "Logistic regression baseline and LightGBM, isotonic calibration, SHAP explanations and a threshold chosen from an explicit cost matrix, all tracked in MLflow."
+      ],
+      "stack": [
+        "DuckDB",
+        "LightGBM",
+        "scikit-learn",
+        "SHAP",
+        "MLflow",
+        "FastAPI",
+        "pytest"
+      ],
+      "metrics": [],
+      "facts": [
+        {
+          "label": "Tests passing",
+          "value": "31",
+          "context": "leakage, data contracts, determinism, cost maths, end to end, API",
+          "source": "results/pytest_output.txt",
+          "sourceUrl": "https://github.com/JaNNi10n/credit-risk-duckdb-lightgbm/blob/main/results/pytest_output.txt"
+        }
+      ],
+      "honestNotes": [
+        "The pipeline has run end to end only on generated data with the real column names. It has not been run on the real Kaggle data yet, so there are no model-quality results to show."
+      ],
+      "images": [
+        {
+          "src": "/assets/credit-mlflow-runs-synthetic.webp",
+          "alt": "MLflow UI listing model, calibration, threshold and SHAP runs",
+          "caption": "MLflow runs from a demo on generated (synthetic) data. Not real results.",
+          "width": 1018,
+          "height": 900,
+          "role": "cover",
+          "synthetic": true
+        },
+        {
+          "src": "/assets/credit-shap-waterfall-synthetic.webp",
+          "alt": "SHAP waterfall plot for one applicant from the synthetic demo",
+          "caption": "SHAP waterfall on synthetic data. Shows the output format only.",
+          "width": 990,
+          "height": 660,
+          "role": "gallery",
+          "synthetic": true
+        }
+      ],
+      "_source": "README.md (Status v1.0.0); github_meta.json. NEVER claim AUC or any other model metric for this project."
+    }
+  ],
+  "seo": {
+    "title": "Shivansh Bhardwaj | AI/ML Engineer",
+    "description": "Portfolio of Shivansh Bhardwaj, an entry-level AI/ML engineer in Bangalore building computer vision, RAG and LLM systems with measured, reproducible results.",
+    "ogImage": "/assets/yolo-test-predictions.webp"
+  },
+  "assets": [
+    {
+      "file": "public/assets/yolo-demo-annotated.webp",
+      "from": "FastAPI-YOLO26-Detector/docs/demo_annotated.jpg",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/yolo-test-predictions.webp",
+      "from": "FastAPI-YOLO26-Detector/runs/eval-test/val_batch1_pred.jpg",
+      "inPublicRepo": false,
+      "note": "Real Ultralytics test-split output from the local run; the runs/ folder is not committed."
+    },
+    {
+      "file": "public/assets/yolo-swagger.webp",
+      "from": "FastAPI-YOLO26-Detector/docs/swagger.png",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/yolo-training-curves.webp",
+      "from": "FastAPI-YOLO26-Detector/results/train/results.png",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/yolo-confusion-matrix.webp",
+      "from": "FastAPI-YOLO26-Detector/results/train/confusion_matrix_normalized.png",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/mmrag-retrieval-hit-at-k.webp",
+      "from": "MULTIMODAL_RAG_project1/docs/retrieval_hit_at_k.png",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/mmrag-sample-invoice.webp",
+      "from": "MULTIMODAL_RAG_project1/docs/sample_invoice.jpg",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/ragbench-results.webp",
+      "from": "rag-retrieval-eval-gate/docs/results.png",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/ragbench-gate-demo.webp",
+      "from": "rag-retrieval-eval-gate/docs/gate_demo.png",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/text2sql-ex-by-arm.webp",
+      "from": "text2sql-self-correcting-agent/docs/ex_by_arm.png",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/hinglish-confusion-matrices.webp",
+      "from": "hinglish-sentiment-benchmark/docs/confusion_matrices.png",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/hinglish-f1-by-cmi.webp",
+      "from": "hinglish-sentiment-benchmark/docs/f1_by_cmi.png",
+      "inPublicRepo": true
+    },
+    {
+      "file": "public/assets/credit-mlflow-runs-synthetic.webp",
+      "from": "credit-risk-duckdb-lightgbm/docs/mlflow_runs_synthetic_demo.png",
+      "inPublicRepo": true,
+      "synthetic": true
+    },
+    {
+      "file": "public/assets/credit-shap-waterfall-synthetic.webp",
+      "from": "credit-risk-duckdb-lightgbm/docs/synthetic_demo/shap_waterfall_rejected_1.png",
+      "inPublicRepo": true,
+      "synthetic": true,
+      "published": false
+    },
+    {
+      "file": "public/Shivansh_Bhardwaj_Resume.pdf",
+      "from": "E:/Jassi/resume/Shivansh_Bhardwaj_Resume_2026-10-14.pdf",
+      "note": "Phone number removed by true redaction; contact line re-centred; links preserved."
+    },
+    {
+      "file": "public/assets/yolo-test-predictions-2row.webp",
+      "derivedFrom": "public/assets/yolo-test-predictions.webp",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 1600,
+        "height": 608
+      },
+      "inPublicRepo": false,
+      "note": "Top two rows of the test-split prediction grid (scripts/derive-assets.mjs)."
+    },
+    {
+      "file": "public/assets/og-grid.jpg",
+      "derivedFrom": "public/assets/yolo-test-predictions-2row.webp",
+      "note": "660x251 JPEG for the Open Graph image."
+    }
+  ],
+  "signature": {
+    "projectSlug": "multimodal-rag",
+    "docId": "invoice_000",
+    "question": "What is the total amount due on invoice INV-6305-00?",
+    "answer": "26,318.72",
+    "gold": "26,318.72",
+    "retrievedJson": "\"retrieved_doc\": \"invoice_000\", \"retrieved_page_correct\": true",
+    "predictionJson": "\"pred\": \"26,318.72\", \"correct\": true",
+    "stamp": "SAMPLE - SYNTHETIC DATA - NOT A REAL DOCUMENT",
+    "ocrExcerpt": "Subtotal:INR 22,304.00 GST（188):INR4,014.72 Total amount due:INR 26,318.72",
+    "ocrTokens": [
+      "inv",
+      "6305",
+      "00"
+    ],
+    "mergedFieldExample": "Totalamountdue",
+    "documents": 45,
+    "questions": 120,
+    "imageOnlyCorrect": "116 / 120",
+    "sources": {
+      "data": {
+        "source": "README.md",
+        "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/README.md#results"
+      },
+      "ocr": {
+        "source": "README.md",
+        "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/README.md#how-it-works"
+      },
+      "question": {
+        "source": "data/synthetic/qa.jsonl",
+        "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/data/synthetic/qa.jsonl"
+      },
+      "prediction": {
+        "source": "results/qa_ocr_bm25_full.predictions.jsonl",
+        "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/results/qa_ocr_bm25_full.predictions.jsonl"
+      },
+      "tokenizer": {
+        "source": "README.md",
+        "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/README.md#how-it-works"
+      },
+      "limitations": {
+        "source": "README.md",
+        "sourceUrl": "https://github.com/JaNNi10n/MULTIMODAL_RAG_project1/blob/main/README.md#limitations-and-next-steps"
+      }
+    }
+  },
+  "site": {
+    "repoUrl": "https://github.com/JaNNi10n/shivansh-portfolio",
+    "repoLabel": "Site source on GitHub"
+  }
+}
