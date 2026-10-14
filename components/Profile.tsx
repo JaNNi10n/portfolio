@@ -91,8 +91,13 @@ export function About() {
 /** The only full-width band. Email as the display link; no phone, no address, no form. */
 export function Contact() {
   const roles = person.availability.replace(/^Open to /, "");
-  const modes = person.workModes.map((m) => m.toLowerCase());
-  const modeText = `${modes.slice(0, -1).join(", ")} or ${modes[modes.length - 1]}`;
+  // Each mode is kept whole so "on-site" never breaks at its hyphen.
+  const modes = person.workModes.map((m) => (
+    <span key={m} className="whitespace-nowrap">
+      {m.toLowerCase()}
+    </span>
+  ));
+  const modeText = modes.flatMap((m, i) => (i === 0 ? [m] : [i === modes.length - 1 ? " or " : ", ", m]));
   return (
     <section id="contact" aria-labelledby="contact-h" className="mt-12 border-t border-line bg-surface md:mt-16">
       <div className="container-x pb-16 pt-16 md:pb-20 md:pt-32">
@@ -160,7 +165,12 @@ export function Footer() {
     <footer>
       <div className="container-x wordmark-band pt-12">
         <p className="t-wordmark text-ink" aria-hidden="true">
-          {person.name}
+          {person.name.split(" ").map((w, i) => (
+            <span key={w}>
+              {i > 0 ? " " : null}
+              {w}
+            </span>
+          ))}
         </p>
       </div>
       <div className="border-t border-line">

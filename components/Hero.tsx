@@ -21,7 +21,7 @@ export function Hero() {
       </div>
 
       <div className="grid-12 mt-6 gap-y-10 md:mt-8">
-        <div className="col-span-full flex flex-col lg:col-span-5">
+        <div className="col-span-full flex flex-col lg:col-span-6 xl:col-span-5">
           <p className="t-lede hero-in text-ink" style={{ "--d": "220ms" } as React.CSSProperties}>
             {hero.headline}
           </p>
@@ -53,9 +53,9 @@ export function Hero() {
         </div>
 
         <Figure
-          className="col-span-full lg:col-span-7 lg:col-start-6"
+          className="col-span-full lg:col-span-6 lg:col-start-7 xl:col-span-7 xl:col-start-6"
           img={img}
-          sizes="(min-width: 1024px) 54vw, 100vw"
+          sizes="(min-width: 1280px) 54vw, (min-width: 1024px) 46vw, 100vw"
           priority
           caption={
             <>
@@ -67,7 +67,6 @@ export function Hero() {
           }
         />
       </div>
-      <div id="hero-sentinel" aria-hidden="true" className="h-px" />
     </section>
   );
 }

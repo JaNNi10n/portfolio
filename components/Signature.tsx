@@ -18,12 +18,15 @@ const BOXES = [
 
 const px = (pct: number, total: number) => Number(((pct / 100) * total).toFixed(1));
 
-function Camera({ sizes }: { sizes: string }) {
+/** One sizes value for every copy of the scan, so the browser resolves and caches a single URL. */
+const CAMERA_SIZES = "(min-width: 1024px) 60vw, 140vw";
+
+function Camera({ label }: { label?: string }) {
   const p = project(sig.projectSlug);
   const scan = image(p, "/assets/mmrag-sample-invoice.webp");
   return (
-    <div className="camera">
-      <Image src={scan.src} alt="" width={scan.width} height={scan.height} sizes={sizes} quality={80} loading="lazy" />
+    <div className="camera" {...(label ? { role: "img", "aria-label": label } : {})}>
+      <Image src={scan.src} alt="" width={scan.width} height={scan.height} sizes={CAMERA_SIZES} quality={80} loading="lazy" />
       <svg className="overlays" viewBox={`0 0 ${SCAN.w} ${SCAN.h}`} aria-hidden="true" focusable="false">
         {BOXES.map((b) => {
           const r = {
@@ -71,7 +74,7 @@ function Frame({ n }: { n: number }) {
   return (
     <div className="sig-frame mb-6" aria-hidden="true">
       <div className="frame" data-state={n}>
-        <Camera sizes={n === 1 ? "60vw" : "140vw"} />
+        <Camera />
       </div>
     </div>
   );
@@ -108,13 +111,9 @@ export function Signature() {
         <div className="grid-12 mt-12 md:mt-16">
           <div className="sig-stage-col lg:col-span-6">
             <div className="sig-sticky">
-              <div
-                className="stage"
-                data-state="4"
-                role="img"
-                aria-label="Synthetic invoice scan used in the walkthrough. Highlights follow each step."
-              >
-                <Camera sizes="(min-width: 1024px) 60vw, 140vw" />
+              {/* Only the scan is role="img"; the chart below keeps its own alt text for screen readers. */}
+              <div className="stage" data-state="4">
+                <Camera label="Synthetic invoice scan used in the walkthrough. Highlights follow each step." />
                 <div className="stage-chart">
                   <Chart sizes="(min-width: 1024px) 46vw, 100vw" />
                 </div>
@@ -150,7 +149,11 @@ export function Signature() {
               </p>
               <Evidence>
                 <p className="ocr-block t-mono w-full text-ink">{sig.ocrExcerpt}</p>
-                <SourceLink source={S.ocr.source} sourceUrl={S.ocr.sourceUrl} label="README.md (How it works)" />
+                <p className="t-small text-ink-2">
+                  Local OCR output (the index is not committed). Regenerate it with{" "}
+                  <code className="t-mono text-ink">{sig.ocrReproduce}</code>.
+                </p>
+                <SourceLink source={S.ocr.source} sourceUrl={S.ocr.sourceUrl} label="mmrag/ingest.py (RapidOCR step)" />
               </Evidence>
             </section>
 

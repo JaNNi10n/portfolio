@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { archivoExpandedBold, OG_COLORS as C, ogGridDataUrl } from "@/lib/og";
 import { metric, person, project } from "@/lib/content";
 
-export const alt = "Shivansh Bhardwaj, AI/ML Engineer, with YOLO26n test-set detections";
+export const alt = "Shivansh Bhardwaj, entry-level AI/ML Engineer, with YOLO26n test-set detections";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

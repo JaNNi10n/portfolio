@@ -16,7 +16,12 @@ function Panel({ row }: { row: Row }) {
   return (
     <div className="grid-12 gap-y-10 bg-surface p-6">
       <div className="col-span-full flex flex-col gap-8 lg:col-span-6">
-        <p className="t-body text-ink">{p.problem}</p>
+        <div>
+          <p className="t-mono text-ink-3">
+            {p.release}, {p.dateLabel}
+          </p>
+          <p className="t-body mt-3 text-ink">{p.problem}</p>
+        </div>
         <Approach items={p.approach} />
         {row.panelMetrics.length ? (
           <div className="grid gap-6 sm:grid-cols-2">
@@ -99,17 +104,17 @@ export function MoreProjects() {
           <details key={row.project.slug} id={row.project.slug} className="disclosure">
             <summary>
               <div className="grid-12 items-center gap-y-2">
-                <h3 className="col-span-3 text-[1.0625rem] font-[640] leading-snug text-ink [font-stretch:112%] md:col-span-4 lg:col-span-4">
+                <h3 className="col-span-3 text-[1.0625rem] font-[640] leading-snug text-ink md:col-span-4 lg:col-span-4">
                   {row.project.title}
                 </h3>
-                <p className="t-small hidden text-ink-2 lg:col-span-3 lg:block">{row.project.tagline}</p>
-                <div className="order-3 col-span-3 md:order-none md:col-span-2 lg:col-span-3">
+                <p className="t-small hidden text-ink-2 lg:col-span-4 lg:block">{row.project.tagline}</p>
+                <div className="order-3 col-span-3 md:order-none md:col-span-3 lg:col-span-3">
                   {row.key ? (
                     <p className="flex flex-col">
                       <span className="tnum text-2xl font-semibold leading-tight tracking-[-0.02em] text-ink">
                         {row.key.value}
                       </span>
-                      <span className="t-small text-ink-2">{row.key.label}</span>
+                      <span className="t-small text-ink-2">{row.key.summaryLabel ?? row.key.label}</span>
                     </p>
                   ) : (
                     <span className="status-label">
@@ -118,9 +123,6 @@ export function MoreProjects() {
                     </span>
                   )}
                 </div>
-                <p className="t-mono order-4 col-span-1 text-ink-3 md:order-none md:col-span-1 md:text-right lg:text-left">
-                  {row.project.dateLabel}
-                </p>
                 <span className="plus order-2 col-span-1 justify-self-end md:order-none" aria-hidden="true">
                   <Plus size={20} />
                 </span>

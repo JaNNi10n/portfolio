@@ -23,6 +23,7 @@
   --accent-soft: oklch(0.94 0.035 130);
   --on-accent: oklch(0.985 0 0);
   --plate-filter: none;
+  --scan-filter: none;
   --body-lh: 1.6;
 
   /* Theme-independent: the invoice scan is light in both themes. */
@@ -32,7 +33,7 @@
   --gutter: clamp(16px, 4vw, 56px);
   --nav-h: 64px;
 
-  /* Measured advance widths (em) of the nameplate at font-stretch 125%, wght 760, -0.015em. */
+  /* Advance widths (em) of the nameplate in Archivo Expanded Bold at -0.015em (measured 14.34 and 7.37), with a hair of margin. */
   --name-em: 14.4;
   --name-line-em: 7.42;
 
@@ -65,6 +66,7 @@
   --accent-soft: oklch(0.26 0.035 130);
   --on-accent: oklch(0.2 0.03 130);
   --plate-filter: brightness(0.94);
+  --scan-filter: brightness(0.88);
   --body-lh: 1.66;
   color-scheme: dark;
 }
@@ -85,6 +87,7 @@
     --accent-soft: oklch(0.26 0.035 130);
     --on-accent: oklch(0.2 0.03 130);
     --plate-filter: brightness(0.94);
+    --scan-filter: brightness(0.88);
     --body-lh: 1.66;
     color-scheme: dark;
   }
@@ -109,6 +112,7 @@
   --color-accent-soft: var(--accent-soft);
   --color-on-accent: var(--on-accent);
   --font-sans: var(--font-archivo), "Schibsted Grotesk", system-ui, sans-serif;
+  --font-display: var(--font-expanded), var(--font-archivo), system-ui, sans-serif;
   --font-mono: var(--font-fragment), "Red Hat Mono", ui-monospace, monospace;
 }
 
@@ -207,8 +211,8 @@
 
   /* Type scale */
   .t-name {
-    font-stretch: 125%;
-    font-weight: 760;
+    font-family: var(--font-display);
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: -0.015em;
     line-height: 0.92;
@@ -223,8 +227,8 @@
   }
 
   .t-wordmark {
-    font-stretch: 125%;
-    font-weight: 760;
+    font-family: var(--font-display);
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: -0.015em;
     line-height: 0.92;
@@ -234,14 +238,13 @@
 
   .t-h2 {
     font-size: clamp(2rem, 1.4rem + 1.8vw, 3rem);
-    font-stretch: 112%;
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.06;
   }
 
   .t-lede {
-    font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+    font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
     font-weight: 560;
     letter-spacing: -0.02em;
     line-height: 1.12;
@@ -359,6 +362,7 @@
     align-items: center;
     gap: 4px;
     max-width: 100%;
+    min-height: 24px;
     padding: 2px 4px;
     margin-inline: -4px;
     color: var(--accent);
@@ -382,6 +386,11 @@
   }
   .source-link svg {
     flex: none;
+  }
+  @media (pointer: coarse) {
+    .source-link {
+      min-height: 32px;
+    }
   }
 
   /* Pills (controls only) */
@@ -526,7 +535,7 @@
 }
 .site-header[data-scrolled="true"],
 .site-header[data-menu="open"] {
-  background: color-mix(in oklch, var(--bg) 94%, transparent);
+  background: var(--bg);
   border-bottom-color: var(--line);
 }
 
@@ -626,49 +635,32 @@
 
 .ledger-row {
   position: relative;
-  border-top: 1px solid var(--line);
+  margin-inline: -12px;
+  padding-inline: 12px;
   transition: background-color var(--dur-micro) var(--ease-out-quint);
+}
+/* The hover tint bleeds 12px past the gutter; the hairline stays on the content edge. */
+.ledger-row::before {
+  content: "";
+  position: absolute;
+  inset: 0 12px auto 12px;
+  height: 1px;
+  background: var(--line);
+  pointer-events: none;
 }
 .ledger-row:hover {
   background: var(--accent-soft);
 }
-.ledger-row::before {
-  content: "";
-  position: absolute;
-  inset: -1px 0 auto 0;
-  height: 1px;
-  background: var(--accent);
-  transform-origin: left;
-  transform: scaleX(0);
-  opacity: 0;
-  pointer-events: none;
-}
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .ledger-row::before {
-      animation: rule-draw linear both;
-      animation-timeline: view();
-      animation-range: entry 10% cover 40%;
-    }
-  }
-}
-@keyframes rule-draw {
-  0% {
-    transform: scaleX(0);
-    opacity: 1;
-  }
-  65% {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scaleX(1);
-    opacity: 0;
+@media (min-width: 768px) {
+  .ledger-row .source-link {
+    white-space: nowrap;
   }
 }
 
 /* ---------- Signature: Retrieve, then read ---------- */
 
+/* Static per-step frames by default (no JS, small or short screens). The sticky stage needs JS to step,
+   so it only replaces the frames once the inline head script has set data-js (before first paint, no shift). */
 .sig-stage-col {
   display: none;
 }
@@ -677,13 +669,13 @@
 }
 
 @media (min-width: 1024px) and (min-height: 700px) {
-  .sig-stage-col {
+  :root[data-js] .sig-stage-col {
     display: block;
   }
-  .sig-frame {
+  :root[data-js] .sig-frame {
     display: none;
   }
-  .sig-step {
+  :root[data-js] .sig-step {
     min-height: 80dvh;
     display: flex;
     flex-direction: column;
@@ -691,15 +683,23 @@
   }
 }
 
+/* The stage stays centred in the viewport under the nav while the steps scroll past. */
 .sig-sticky {
   position: sticky;
-  top: 96px;
+  top: var(--nav-h);
+  height: calc(100dvh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* A landscape light table: the whole page in step 1, then a cropped, zoomed slip of it. */
 .stage {
   position: relative;
   container-type: size;
-  height: calc(100dvh - 168px);
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  max-height: calc(100dvh - var(--nav-h) - 96px);
   background: var(--surface);
   border: 1px solid var(--line);
   overflow: hidden;
@@ -717,8 +717,7 @@
   overflow: hidden;
   display: grid;
   place-items: center;
-  --s-zoom: 2.5;
-  --cy-zoom: 20%;
+  --s-zoom: 2.4;
 }
 
 .camera {
@@ -729,21 +728,27 @@
   --s: 1;
   --cx: 50%;
   --cy: 50%;
+  --clip: inset(0 0 0 0);
   transform: translate(calc(50% - var(--s) * var(--cx)), calc(50% - var(--s) * var(--cy))) scale(var(--s));
+  clip-path: var(--clip);
   background: var(--plate);
 }
 .camera img {
   display: block;
   width: 100%;
   height: 100%;
+  filter: var(--scan-filter);
 }
 
+/* Steps 2 to 4 crop the page to the printed text block (with a margin) and centre it.
+   The crop is in the camera's own box, so it scales with the zoom. */
 [data-state="2"] .camera,
 [data-state="3"] .camera,
 [data-state="4"] .camera {
   --s: var(--s-zoom, 1.7);
   --cx: 40.75%;
-  --cy: var(--cy-zoom, 16.8%);
+  --cy: 16.8%;
+  --clip: inset(0.5% 23.5% 66.9% 5%);
 }
 
 .overlays {
@@ -807,7 +812,7 @@
   display: grid;
   place-items: center;
   padding: 24px;
-  background: var(--plate);
+  background: var(--surface);
   opacity: 0;
 }
 .stage-chart img {
@@ -826,20 +831,23 @@
   opacity: 1;
 }
 
-.sig-step h3 {
+/* Step titles are h4 (the project title is the h3). The active one takes the accent. */
+.sig-step h4 {
   transition: color var(--dur-ui) var(--ease-out-quint);
 }
-.sig[data-step="1"] .sig-step[data-n="1"] h3,
-.sig[data-step="2"] .sig-step[data-n="2"] h3,
-.sig[data-step="3"] .sig-step[data-n="3"] h3,
-.sig[data-step="4"] .sig-step[data-n="4"] h3,
-.sig[data-step="5"] .sig-step[data-n="5"] h3 {
+.sig[data-step="1"] .sig-step[data-n="1"] h4,
+.sig[data-step="2"] .sig-step[data-n="2"] h4,
+.sig[data-step="3"] .sig-step[data-n="3"] h4,
+.sig[data-step="4"] .sig-step[data-n="4"] h4,
+.sig[data-step="5"] .sig-step[data-n="5"] h4 {
   color: var(--accent);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .stage .camera {
-    transition: transform var(--dur-camera) var(--ease-out-expo);
+    transition:
+      transform var(--dur-camera) var(--ease-out-expo),
+      clip-path var(--dur-camera) var(--ease-out-expo);
   }
   .sig[data-inview="true"] .stage .camera {
     will-change: transform;
@@ -1066,6 +1074,33 @@
 .wordmark-band .t-wordmark {
   margin-bottom: -0.12em;
 }
+@media (max-width: 767.98px) {
+  .wordmark-band .t-wordmark {
+    font-size: calc(100cqi / var(--name-line-em));
+  }
+  .wordmark-band .t-wordmark > span {
+    display: block;
+  }
+}
+
+/* Theme toggle: the icon follows the applied theme from CSS, so it is right before hydration. */
+.theme-icon-sun {
+  display: none;
+}
+:root[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+:root[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon-sun {
+    display: block;
+  }
+  :root:not([data-theme="light"]) .theme-icon-moon {
+    display: none;
+  }
+}
 
 /* ---------- Lightbox ---------- */
 
@@ -1157,9 +1192,12 @@
   animation-duration: 200ms;
 }
 
-/* A Limits box inside a tinted disclosure panel sits on the page tone so it still reads as a box. */
+/* Inside a tinted disclosure panel, Limits drops its box: a top rule and the heading carry it. */
 .bg-surface .limits {
-  background: var(--bg);
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--line);
+  padding: 16px 0 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {

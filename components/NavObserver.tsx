@@ -5,13 +5,14 @@ import { useEffect } from "react";
 const SECTIONS = ["work", "about", "contact"] as const;
 
 /**
- * Renders nothing. Sets data-scrolled on the header once the hero sentinel leaves the viewport,
+ * Renders nothing. Sets data-scrolled on the header once the page has scrolled at all (the 1px top sentinel
+ * leaves the viewport), so content never shows through the nav,
  * and aria-current on the nav link of the section crossing the middle of the viewport.
  */
 export function NavObserver() {
   useEffect(() => {
     const header = document.getElementById("site-header");
-    const sentinel = document.getElementById("hero-sentinel");
+    const sentinel = document.getElementById("top-sentinel");
     const observers: IntersectionObserver[] = [];
 
     if (header && sentinel) {

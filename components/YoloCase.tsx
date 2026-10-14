@@ -53,7 +53,7 @@ export function YoloCase() {
         </div>
       </div>
 
-      <Figure className="mt-16" img={curves} sizes="(min-width: 1360px) 1248px, 100vw" />
+      <Figure className="mt-16 max-w-[1100px]" img={curves} sizes="(min-width: 1180px) 1100px, 100vw" />
 
       <div className="grid-12 mt-16 gap-y-12">
         <div className="col-span-full flex flex-col gap-12 lg:col-span-6">

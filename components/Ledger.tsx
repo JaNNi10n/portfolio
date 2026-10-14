@@ -11,20 +11,21 @@ export function Ledger() {
       </h2>
       <ul>
         {rows.map(({ project, metric }) => (
-          <li key={project.slug} className="ledger-row -mx-3 px-3">
+          <li key={project.slug} className="ledger-row">
             <div className="grid-12 items-baseline gap-y-2 px-0 py-5 md:py-6">
               <a
                 href={`#${project.slug}`}
-                className="link-quiet t-small col-span-full font-semibold text-ink md:col-span-4 lg:col-span-3"
+                className="link-quiet t-small col-span-full py-1 font-semibold text-ink md:col-span-4 lg:col-span-3"
               >
                 {project.title}
               </a>
               <p className="t-num-xl col-span-full text-ink md:col-span-4 lg:col-span-3">{metric.value}</p>
-              <div className="col-span-full md:col-span-5 lg:col-span-3">
+              <div className="col-span-full md:col-span-5 lg:col-span-6 xl:col-span-3">
                 <p className="t-small font-semibold text-ink">{metric.label}</p>
                 <p className="t-small text-ink-2">{metric.context}</p>
               </div>
-              <div className="col-span-full md:col-span-3 md:text-right lg:col-span-3">
+              {/* 1024-1279: the path sits under its label so it never breaks mid-filename. */}
+              <div className="col-span-full md:col-span-3 md:text-right lg:col-span-6 lg:col-start-7 lg:text-left xl:col-span-3 xl:col-start-auto xl:text-right">
                 <SourceLink source={metric.source} sourceUrl={metric.sourceUrl} />
               </div>
             </div>

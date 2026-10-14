@@ -23,7 +23,7 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: person.name,
-    jobTitle: person.role,
+    description: person.availability,
     url: SITE_URL,
     email: links.emailHref,
     address: { "@type": "PostalAddress", addressLocality: "Bangalore", addressCountry: "IN" },

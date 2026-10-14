@@ -9,6 +9,8 @@ export type MetricData = Sourced & {
   value: string;
   context: string;
   headline?: boolean;
+  /** Shorter label with its caveat, for collapsed summary rows. */
+  summaryLabel?: string;
 };
 
 export type ImageData = {
